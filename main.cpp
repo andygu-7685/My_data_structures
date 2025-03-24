@@ -1,52 +1,135 @@
 #include <iostream>
 #include <iomanip>
-#include "C:\Users\agu4\Documents\CS8 Projects\09_p2_delete_repeats-andygu-7685\includes\deck.h"
+#include <vector>
 
+#include "C:\Users\agu4\Documents\CS8Projects\Test_Ground_full\includes\linked_list_functions.h"
 using namespace std;
 
+
+
+
+
+
+
+
+
+
 int main(int argv, char** argc) {
-    
-    deck d1;
-    deck d2 = d1;
+    node<int>* head = nullptr;
+    node<int>* currentNode = nullptr;
+    bool getKey = true;
+    char key;
+    int num;
+    bool order = false;
+    //search
+    //insert after
+    //insert before
+    //delete
+    //copy
+    //clear
+    //at
+    //insert sorted(a/d)
+    //insert sorted and add(a/d)
+    //last node
 
-    //initialize deck of card
-    //------------------------------------------------------------------
-    cout << "\n-----------------------------------------------------------------------\n";
-    cout << "randomly initalized deck of card: \n\n";
-    d1.printDeck();
-    //------------------------------------------------------------------
-
-    //perfect shuffle
-    //------------------------------------------------------------------
-    cout << "\n-----------------------------------------------------------------------\n";
-    cout << "perform perfect shuffle on d1: \n\n";
-    d1.perfectShuffle();
-    d1.printDeck();
-    //------------------------------------------------------------------
-    
-    //compare deck of card
-    //------------------------------------------------------------------
-    cout << "\n-----------------------------------------------------------------------\n";
-    cout << "comapre shuffled deck(d1) with initial deck(d2): \n\n";
-    (d2.cmpDeck(d1)) ? cout << "true, d1 == d2\n" : cout << "false, d1 != d2\n";
-    //------------------------------------------------------------------
-
-    //shuffle until shuffled deck is same as initial deck
-    //------------------------------------------------------------------
-    cout << "\n-----------------------------------------------------------------------\n";
-    cout << "shuffle until shuffled deck(d1) is same as initial deck(d2): \n\n";
-    int shuffleCtr = 1;
-    while(true){
-        d1.perfectShuffle();
-        d1.printDeck();
-        (d2.cmpDeck(d1)) ? cout << "\ntrue, d1 == d2\n\n" : cout << "\nfalse, d1 != d2\n\n";
-        shuffleCtr++;
-        if(d2.cmpDeck(d1))
+    while(getKey){
+        cout << "[f] find, [a] insert after, [b] insert before, [d] delete, [c] copy, [~] clear" << endl;
+        cout << "[@] at, [s] insert sorted, [+] insert sorted and add, [l] last node, [q] quit" << endl;
+        print_list<int>(head, currentNode);
+        cin >> key;
+        key = tolower(key);
+        switch(key){
+            //move right
+            case '.':
+            currentNode = _next_node<int>(head, currentNode);
             break;
+            //move left
+            case ',':
+            currentNode = _previous_node<int>(head, currentNode);
+            break;
+            //find
+            case 'f':
+                cout << "Enter number you want find: ";
+                cin >> num;
+                currentNode = _search_list<int>(head, num);
+                cout << ((currentNode) ?  "Result: Found" : "Result: Not found") << endl;
+            break;
+            //insert after
+            case 'a':
+                cout << "Enter number you want insert after: ";
+                cin >> num;
+                _insert_after<int>(head, currentNode, num);
+            break;
+            //insert before
+            case 'b':
+                cout << "Enter number you want insert before: ";
+                cin >> num;
+                _insert_before<int>(head, currentNode, num);
+            break;
+            //delete
+            case 'd':
+                _delete_node<int>(head, currentNode);
+                currentNode = head;
+            break;
+            //copy
+            case 'c':
+                node<int>* dest;
+                _copy_list<int>(dest, head);
+                cout << "first copy: ";
+                print_list(dest);
+                _clear_list(dest);
+                dest = _copy_list(head);
+                cout << "second copy: ";
+                print_list(dest);
+                _clear_list(dest);
+            break;
+            //clear
+            case '~':
+                _clear_list(head);
+                currentNode = head;
+            break;
+            //at
+            case '@':
+                cout << "Enter the index you want find: ";
+                cin >> num;
+                currentNode = _at_index(head, num);
+                cout << ((currentNode) ?  "Result: Found" : "Result: Not found") << endl;
+            break;
+            //insert sorted(a/d)
+            case 's':
+                cout << "Enter the number you want insert sorted: ";
+                cin >> num;
+                cout << "Enter the order: [0] descending, [1] ascending ";
+                cin >> key;
+                (key != '0') ? order = true : order = false;
+                _insert_sorted<int>(head, num, order);
+            break;
+            //insert sorted and add(a/d)
+            case '+':
+                cout << "Enter the number you want insert sorted and add: ";
+                cin >> num;
+                cout << "Enter the order: [0] descending, [1] ascending ";
+                cin >> key;
+                (key != '0') ? order = true : order = false;
+                _insert_sorted_and_add<int>(head, num, order);
+            break;
+            //last node
+            case 'l':
+                currentNode = _last_node<int>(head);
+            break;
+            //Quit
+            case 'q':
+                getKey = false;
+            break;
+
+            default:
+                cout << "Invalid Command, Try Again" << endl;
+            break;
+        }
     }
-    cout << "\ntotal shuffle to return to inital deck (including first shuffle): " << shuffleCtr << endl;
-    //------------------------------------------------------------------
-
-
+    
     return 0;
 }
+
+
+
