@@ -17,6 +17,12 @@ struct node{
         outs << " [" << printMe._item << "] ->";
         return outs;
     }
+
+    void swap(){
+      node<T>* temp = _next;
+      _next = _prev;
+      _prev = temp;
+    }
 };
 
 #endif

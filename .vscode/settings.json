@@ -11,6 +11,20 @@
         "text_encoding": "cpp",
         "type_traits": "cpp",
         "variant": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "iosfwd": "cpp",
+        "charconv": "cpp",
+        "chrono": "cpp",
+        "ratio": "cpp",
+        "system_error": "cpp",
+        "array": "cpp",
+        "functional": "cpp",
+        "tuple": "cpp",
+        "utility": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "unordered_map": "cpp",
+        "unordered_set": "cpp",
+        "vector": "cpp"
     }
 }

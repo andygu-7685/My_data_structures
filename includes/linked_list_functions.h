@@ -144,6 +144,19 @@ void print_list(node<T> *head_ptr, node<T>* target = nullptr){
         return nullptr;
     }
 
+    template <typename ITEM_TYPE>
+    int _search_list_index(node<ITEM_TYPE>* head, ITEM_TYPE key){
+        node<ITEM_TYPE>* walker = head;
+        int ctr = 0;
+        while(walker != nullptr){
+            if(walker->_item == key)
+                return ctr;
+            walker = walker->_next;
+            ctr++
+        }
+        return -1;
+    }
+
 //I C
     //insert after ptr
     template <typename ITEM_TYPE>
@@ -155,7 +168,6 @@ void print_list(node<T> *head_ptr, node<T>* target = nullptr){
         node<ITEM_TYPE>* insert_ptr = new node<ITEM_TYPE>(insert_this, nextPtr, after_this);
         set_next(after_this, insert_ptr);
         set_prev(nextPtr, insert_ptr);
-        cout << endl;
         return insert_ptr;
     }
 
@@ -193,6 +205,33 @@ void print_list(node<T> *head_ptr, node<T>* target = nullptr){
         set_prev(delete_this->_next, prevPtr);
         ITEM_TYPE save = delete_this->_item;
         delete delete_this;
+        return save;
+    }
+
+
+
+    //The second part of the list will be in head2
+    template <typename ITEM_TYPE>
+    ITEM_TYPE _split_list(node<ITEM_TYPE>*& head1, node<ITEM_TYPE>*& head2, int& size){
+        _clear_list(head2);
+        node<ITEM_TYPE>* mid = _at_index<ITEM_TYPE>(head1, floor(size / 2.0));
+        ITEM_TYPE save = ITEM_TYPE();
+        if(mid == nullptr)
+            return save;
+
+        if(size % 2 != 0){
+            head2 = mid->_next;
+            save = mid->_item;
+            set_next(mid->_prev);
+            set_prev(mid->_next);
+            delete mid;
+        }
+        else{
+            head2 = mid;
+            set_next(mid->_prev);
+            set_prev(mid);
+        }
+        size = floor(size / 2.0);
         return save;
     }
 
