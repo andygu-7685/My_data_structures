@@ -152,7 +152,7 @@ void print_list(node<T> *head_ptr, node<T>* target = nullptr){
             if(walker->_item == key)
                 return ctr;
             walker = walker->_next;
-            ctr++
+            ctr++;
         }
         return -1;
     }
@@ -210,30 +210,30 @@ void print_list(node<T> *head_ptr, node<T>* target = nullptr){
 
 
 
-    //The second part of the list will be in head2
-    template <typename ITEM_TYPE>
-    ITEM_TYPE _split_list(node<ITEM_TYPE>*& head1, node<ITEM_TYPE>*& head2, int& size){
-        _clear_list(head2);
-        node<ITEM_TYPE>* mid = _at_index<ITEM_TYPE>(head1, floor(size / 2.0));
-        ITEM_TYPE save = ITEM_TYPE();
-        if(mid == nullptr)
-            return save;
+    // //The second part of the list will be in head2
+    // template <typename ITEM_TYPE>
+    // ITEM_TYPE _split_list(node<ITEM_TYPE>*& head1, node<ITEM_TYPE>*& head2, int& size){
+    //     _clear_list(head2);
+    //     node<ITEM_TYPE>* mid = _at_index<ITEM_TYPE>(head1, floor(size / 2.0));
+    //     ITEM_TYPE save = ITEM_TYPE();
+    //     if(mid == nullptr)
+    //         return save;
 
-        if(size % 2 != 0){
-            head2 = mid->_next;
-            save = mid->_item;
-            set_next(mid->_prev);
-            set_prev(mid->_next);
-            delete mid;
-        }
-        else{
-            head2 = mid;
-            set_next(mid->_prev);
-            set_prev(mid);
-        }
-        size = floor(size / 2.0);
-        return save;
-    }
+    //     if(size % 2 != 0){
+    //         head2 = mid->_next;
+    //         save = mid->_item;
+    //         set_next(mid->_prev);
+    //         set_prev(mid->_next);
+    //         delete mid;
+    //     }
+    //     else{
+    //         head2 = mid;
+    //         set_next(mid->_prev);
+    //         set_prev(mid);
+    //     }
+    //     size = floor(size / 2.0);
+    //     return save;
+    // }
 
 
 

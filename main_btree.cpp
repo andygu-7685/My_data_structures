@@ -2,7 +2,7 @@
 #include <iomanip>
 #include <vector>
 
-#include "C:\Users\agu4\Documents\MyProject\Doubly-linked-list\includes\binary_tree.h"
+#include "C:\Users\USER\Documents\My_Projects\Doubly-linked-list\includes\btree.h"
 using namespace std;
 
 
@@ -11,11 +11,8 @@ using namespace std;
 
 
 
-
-
-
 int main(int argv, char** argc) {
-    BinaryTree<int> root;
+    BTree<int> root;
     bool found;
     bool getKey = true;
     char key;
@@ -68,6 +65,3 @@ int main(int argv, char** argc) {
     
     return 0;
 }
-
-
-

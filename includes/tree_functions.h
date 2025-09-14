@@ -144,6 +144,7 @@ void _print_tree(treeNode<T> *root_ptr, treeNode<T>* target = nullptr){
 
 //I
 //
+/*
 template<typename T>
 void _print_tree(treeNode<T> *root_ptr, treeNode<T>* target = nullptr){
     if(root_ptr == nullptr){
@@ -234,7 +235,7 @@ void _print_tree(treeNode<T> *root_ptr, treeNode<T>* target = nullptr){
     delete placehold;
 }
 
-
+*/
 
 
 
@@ -377,17 +378,22 @@ void _print_tree(treeNode<T> *root_ptr, treeNode<T>* target = nullptr){
 
 
 //I C
-    //duplicate the list...
+    //duplicate the tree...
     template <typename ITEM_TYPE>
     treeNode<ITEM_TYPE>* _copy_tree(treeNode<ITEM_TYPE>* root){
         if (root == nullptr)
             return nullptr;
     
-        treeNode<ITEM_TYPE>* left = _copy_tree(root->left);
-        set_prev(left, root);
-        treeNode<ITEM_TYPE>* right = _copy_tree(root->right);
-        set_prev(right, root);
-        return new treeNode<ITEM_TYPE>(root->value, left, right);
+        treeNode<ITEM_TYPE>* newRoot = new treeNode<ITEM_TYPE>(root->_item);
+
+        treeNode<ITEM_TYPE>* left = _copy_tree(root->_left);
+        set_prev(left, newRoot);
+        treeNode<ITEM_TYPE>* right = _copy_tree(root->_right);
+        set_prev(right, newRoot);
+
+        newRoot->_left = left;
+        newRoot->_right = right;
+        return newRoot;
     }
 
 

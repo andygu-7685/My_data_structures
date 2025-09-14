@@ -173,13 +173,13 @@ public:
     }
 
     //require determine the validity of return value before hand
-    friend T split_list(List<T>& Lst1, List<T>& Lst2){
-        int postSize;
-        T midItem = _split_list(Lst1._head_ptr, Lst2._head_ptr, postSize);
-        Lst1._size = postSize;
-        Lst2._size = postSize;
-        return midItem;
-    }
+    // friend T split_list(List<T>& Lst1, List<T>& Lst2){
+    //     int postSize;
+    //     T midItem = _split_list(Lst1._head_ptr, Lst2._head_ptr, postSize);
+    //     Lst1._size = postSize;
+    //     Lst2._size = postSize;
+    //     return midItem;
+    // }
     
     Iterator insert_before(Iterator it, const T& i) { // Insert i
         assert(_size != -1); 
